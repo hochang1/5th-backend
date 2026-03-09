@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf View</title>
+</head>
+<body>
+	<h1>Thymeleaf View Apply</h1>
+	
+	<!-- 링크 th:href uri 사용-->
+	<a th:href="@{/view-basic}">view-basic 이동</a>
+	
+	<!-- Query String : ?name=value -->
+	<!-- http://localhost:8080/students?sid=20246001&sname=thyme -->
+	<a th:href="@{/students(sid=${thyme.sid}, sname=${thyme.sname})}">쿼리스트링</a>
+	
+	
+	
+	<!-- Path Varible : /students/20246001-->
+	<!-- http://localhost:8080/students/20246001 -->
+	<a th:href="@{/students/{sid}(sid=${thyme.sid})}">경로파라미터</a>
+
+	<button th:onclick="'location.href=\'' + @{/view-basic} + '\''">view-basic 이동</button>
+	<button th:onclick="|location.href='@{/view-basic}'|">view-basic 이동</button>
+	<button id="view-basic-btn">view-basic 이동</button>
+	
+	<hr>
+	
+	<form th:action="@{/form}" method="GET">
+		<div>
+			<label for="sid">학생번호 : </label>
+			<input id="sid" type="text" name="sid">
+			<label for="sname">학생이름 : </label>
+			<input id="sname" type="text" name="sname">		
+		</div>
+		<button type="submit">전송</button>
+	</form>
+	
+	
+	
+	<script th:inline="javascript">
+		let sid = /*[[${thyme.sid}]]*/'';		/*코드오류 보기 싫을때 : 주석'''*/
+		console.log(sid);
+		
+		const viewBasicBtn = document.getElementById('view-basic-btn');
+		viewBasicBtn.addEventListener('click', () => {
+			location.href = /*[[@{/view-basic}]]*/'/view-basic';
+		});
+	</script>
+	
+	
+</body>
+</html>

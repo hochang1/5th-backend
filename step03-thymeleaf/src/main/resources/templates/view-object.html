@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf View</title>
+</head>
+<body>
+	<h1> Thymeleaf View Object</h1>
+	
+	<ul> Object
+		<li>[[${thyme.sname}]]</li>
+		<li>[[${thyme['sname']}]]</li>
+		<li>[[${thyme.getSname()}]]</li>
+		<li th:text="${thyme.sname}"></li>
+	</ul>
+
+	<ul> List
+		<li th:text="${students[1].sid}"></li>
+	</ul>
+	
+	<ul> Map
+		<li th:text="${studentMap.sid}"></li>
+	</ul>	
+</body>
+</html>
